@@ -64,7 +64,7 @@ const ExpenseList = ({ expenses, deleteExpense }) => {
       <div className="p-4 mb-4 text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 flex items-center gap-4">
         <h1 className="text-xl font-bold">Total Spent : </h1>
         <span className="text-xl text-blue-50">
-          ${expenses.reduce((total, item) => total + item.amount, 0)}
+          ${expenses.reduce((total, item) => total + parseInt(item.amount), 0)}
         </span>
       </div>
     </>

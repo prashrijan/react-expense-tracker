@@ -2,40 +2,21 @@ import { useState } from "react";
 import "./App.css";
 import ExpenseList from "./Components/ExpenseList";
 import ExpenseFilter from "./Components/ExpenseFilter";
+import ExpenseForm from "./Components/ExpenseForm";
 
 function App() {
-  const expenses = [
-    {
-      id: 1,
-      description: "Standing Desk",
-      category: "Utlities",
-      amount: 200,
-    },
-    {
-      id: 2,
-      description: "Bed",
-      category: "Utlities",
-      amount: 400,
-    },
-    {
-      id: 3,
-      description: "Eggs",
-      category: "Grocery",
-      amount: 15,
-    },
-    {
-      id: 4,
-      description: "Movies",
-      category: "Entertainment",
-      amount: 20,
-    },
-  ];
+  const [expenses, setExpenses] = useState([]);
   const [filteredExpenses, setFilteredExpenses] = useState(expenses);
 
+  const addExpense = (newExpense) => {
+    setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+    setFilteredExpenses((prevExpenses) => [...prevExpenses, newExpense]);
+  };
+
   const deleteExpense = (id) => {
-    setFilteredExpenses(
-      filteredExpenses.filter((expense) => expense.id !== id)
-    );
+    const updatedExpenses = expenses.filter((expense) => expense.id !== id);
+    setExpenses(updatedExpenses);
+    setFilteredExpenses(updatedExpenses);
   };
 
   const filterByCategory = (value) => {
@@ -53,6 +34,7 @@ function App() {
         <h2 className="max-w-lg text-2xl md:text-3xl font-semibold leading-normal text-gray-900 dark:text-white text-center">
           Track Your Expenses Efficiently
         </h2>
+        <ExpenseForm addExpense={addExpense} />
         <ExpenseFilter filterByCategory={filterByCategory} />
         <ExpenseList
           expenses={filteredExpenses}
