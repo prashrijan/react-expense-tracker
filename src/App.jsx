@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import ExpenseList from "./Components/ExpenseList";
 import ExpenseFilter from "./Components/ExpenseFilter";
@@ -7,19 +7,47 @@ import ExpenseForm from "./Components/ExpenseForm";
 function App() {
   const [expenses, setExpenses] = useState([]);
   const [filteredExpenses, setFilteredExpenses] = useState(expenses);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const getExpensesFromLocalStorage = () => {
+    const storedExpenses =
+      JSON.parse(localStorage.getItem("storedExpenses")) || [];
+    return storedExpenses;
+  };
+
+  const saveExpensesToLocalStorage = (expenses) => {
+    localStorage.setItem("storedExpenses", JSON.stringify(expenses));
+  };
+
+  useEffect(() => {
+    const storedExpenses = getExpensesFromLocalStorage();
+    setExpenses(storedExpenses);
+    setFilteredExpenses(storedExpenses);
+  }, []);
+
+  useEffect(() => {
+    saveExpensesToLocalStorage(expenses);
+
+    if (selectedCategory === "All") {
+      setFilteredExpenses(expenses);
+    } else {
+      setFilteredExpenses(
+        expenses.filter((expense) => expense.category === selectedCategory)
+      );
+    }
+  }, [expenses, selectedCategory]);
 
   const addExpense = (newExpense) => {
     setExpenses((prevExpenses) => [...prevExpenses, newExpense]);
-    setFilteredExpenses((prevExpenses) => [...prevExpenses, newExpense]);
   };
 
   const deleteExpense = (id) => {
     const updatedExpenses = expenses.filter((expense) => expense.id !== id);
     setExpenses(updatedExpenses);
-    setFilteredExpenses(updatedExpenses);
   };
 
   const filterByCategory = (value) => {
+    setSelectedCategory(value);
     if (value === "All") {
       setFilteredExpenses(expenses);
     } else {

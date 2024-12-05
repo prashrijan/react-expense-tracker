@@ -49,7 +49,9 @@ const ExpenseList = ({ expenses, deleteExpense }) => {
                     <td className="px-6 py-4">
                       <button
                         className="font-medium text-red-600 dark:text-red-500 hover:underline"
-                        onClick={() => deleteExpense(expense.id)}
+                        onClick={() => {
+                          deleteExpense(expense.id);
+                        }}
                       >
                         Delete
                       </button>
