@@ -13,12 +13,6 @@ function App() {
   );
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const getExpensesFromLocalStorage = () => {
-    const storedExpenses =
-      JSON.parse(localStorage.getItem("storedExpenses")) || [];
-    return storedExpenses;
-  };
-
   const saveExpensesToLocalStorage = (expenses) => {
     localStorage.setItem("storedExpenses", JSON.stringify(expenses));
   };
