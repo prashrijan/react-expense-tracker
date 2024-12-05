@@ -3,6 +3,7 @@ import "./App.css";
 import ExpenseList from "./Components/ExpenseList";
 import ExpenseFilter from "./Components/ExpenseFilter";
 import ExpenseForm from "./Components/ExpenseForm";
+import Footer from "./Components/Footer";
 
 function App() {
   const [expenses, setExpenses] = useState(
@@ -60,6 +61,7 @@ function App() {
           expenses={filteredExpenses}
           deleteExpense={deleteExpense}
         />
+        <Footer />
       </div>
     </>
   );
