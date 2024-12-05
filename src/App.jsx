@@ -5,8 +5,12 @@ import ExpenseFilter from "./Components/ExpenseFilter";
 import ExpenseForm from "./Components/ExpenseForm";
 
 function App() {
-  const [expenses, setExpenses] = useState([]);
-  const [filteredExpenses, setFilteredExpenses] = useState(expenses);
+  const [expenses, setExpenses] = useState(
+    JSON.parse(localStorage.getItem("storedExpenses")) || []
+  );
+  const [filteredExpenses, setFilteredExpenses] = useState(
+    JSON.parse(localStorage.getItem("storedExpenses")) || []
+  );
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const getExpensesFromLocalStorage = () => {
@@ -18,12 +22,6 @@ function App() {
   const saveExpensesToLocalStorage = (expenses) => {
     localStorage.setItem("storedExpenses", JSON.stringify(expenses));
   };
-
-  useEffect(() => {
-    const storedExpenses = getExpensesFromLocalStorage();
-    setExpenses(storedExpenses);
-    setFilteredExpenses(storedExpenses);
-  }, []);
 
   useEffect(() => {
     saveExpensesToLocalStorage(expenses);
