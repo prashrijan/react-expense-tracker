@@ -4,8 +4,8 @@ const ExpenseList = ({ expenses, deleteExpense }) => {
   return (
     <>
       <div className="w-96 md:w-1/2 overflow-x-auto shadow-md rounded-lg ">
-        <table className="w-full text-md text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table className="w-full text-md text-left rtl:text-righttext-gray-400">
+          <thead className="text-xs uppercase bg-gray-700 text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Expense
@@ -23,10 +23,10 @@ const ExpenseList = ({ expenses, deleteExpense }) => {
           </thead>
           <tbody>
             {expenses.length === 0 ? (
-              <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+              <tr className="odd:bg-gray-900 even:bg-gray-800 border-gray-700">
                 <td
                   colSpan="4"
-                  className="px-6 py-4 font-medium text-gray-900 text-center whitespace-nowrap dark:text-white"
+                  className="px-6 py-4 font-medium text-center whitespace-nowrap text-white"
                 >
                   No expenses made.
                 </td>
@@ -36,11 +36,11 @@ const ExpenseList = ({ expenses, deleteExpense }) => {
                 return (
                   <tr
                     key={expense.id}
-                    className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                    className="odd:bg-gray-900 even:bg-gray-800 border-gray-700"
                   >
                     <th
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      className="px-6 py-4 font-medium whitespace-nowrap text-white"
                     >
                       {expense.description}
                     </th>
@@ -63,7 +63,7 @@ const ExpenseList = ({ expenses, deleteExpense }) => {
           </tbody>
         </table>
       </div>
-      <div className="p-4 mb-4 text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 flex items-center gap-4">
+      <div className="p-4 mb-4 rounded-lg bg-gray-800 text-blue-400 flex items-center gap-4">
         <h1 className="text-xl font-bold">Total Spent : </h1>
         <span className="text-xl text-blue-50">
           $
